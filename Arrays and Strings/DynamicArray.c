@@ -15,29 +15,35 @@ int** total_number_of_pages;
 
 // we can't edit the above lines in hackerrank 
 
+// thanks to https://github.com/rene-d/hackerrank/blob/master/c/c-arrays-and-strings/dynamic-array-in-c.c this github account
+// this help alot to understand the question
 
 
 int main()
 {
     int total_number_of_shelves;
     scanf("%d", &total_number_of_shelves);
-    
+
     int total_number_of_queries;
     scanf("%d", &total_number_of_queries);
-    
+
+    total_number_of_books = (int *) calloc(sizeof(int), total_number_of_shelves);
+    total_number_of_pages = (int **) calloc(sizeof(int *), total_number_of_shelves);
+
     while (total_number_of_queries--) {
         int type_of_query;
         scanf("%d", &type_of_query);
-        
-        if (type_of_query == 1) {
-           //here they said to do our logic
 
-           // first we get the value of total number of shelves
-           // then total number of queries 
-        //    after that we start the loop and get same number of value of queries 
-        
-            int x, y;
-            scanf("%d %d", &x, &y);
+        if (type_of_query == 1) {
+            /*
+             * Process the query of first type here.
+             */
+            int shelf, pages;
+            scanf("%d %d", &shelf, &pages);
+
+            total_number_of_books[shelf]++;
+            total_number_of_pages[shelf] = realloc(total_number_of_pages[shelf], sizeof(int *) * total_number_of_books[shelf]);
+            total_number_of_pages[shelf][total_number_of_books[shelf] - 1] = pages;
 
 
 
